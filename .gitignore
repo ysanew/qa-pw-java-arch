@@ -13,7 +13,7 @@ package-lock.json
 .DS_Store
 Thumbs.db
 
-# Build output (если появится)
+# Build output
 dist/
 build/
 
