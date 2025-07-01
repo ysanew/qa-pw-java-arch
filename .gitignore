@@ -1,5 +1,6 @@
 # IDE
 .idea/
+*.iml
 
 # Node
 node_modules/
@@ -29,3 +30,15 @@ build/
 
 # Optional lockfiles
 *.tgz
+
+commit_message.txt
+
+# Gradle
+.gradle/
+/**/build/
+
+# lock-и bin-файлы Gradle
+**/*.lock
+**/*.bin
+
+
