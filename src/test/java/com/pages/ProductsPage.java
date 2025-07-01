@@ -3,6 +3,7 @@ package com.pages;
 import com.components.HeaderComponent;
 import com.components.SideNavMenuComponent;
 import com.microsoft.playwright.Locator;
+import com.utils.BasePageFactory;
 import io.qameta.allure.Step;
 
 
@@ -37,5 +38,18 @@ public final class ProductsPage extends BasePage {
     public ProductsPage addItemToCart(String itemName) {
         page.locator(String.format("//div[text()='%s']//following::button[1]", itemName)).click();
         return this;
+    }
+
+    @Step("Click on Cart button")
+    public CartPage clickOnCart() {
+        headerComponent.clickOnCart();
+        return BasePageFactory.createInstance(CartPage.class, page);
+    }
+
+    @Step("Click on logout button on sidebar navigation menu")
+    public LoginPage clickOnLogout() {
+        headerComponent.clickOnHamburgerMenu();
+        sideNavMenuComponent.clickOnLogout();
+        return BasePageFactory.createInstance(LoginPage.class, page);
     }
 }

@@ -1,5 +1,6 @@
 package com.pages;
 
+import com.utils.BasePageFactory;
 import io.qameta.allure.Step;
 import com.microsoft.playwright.Locator;
 
@@ -28,5 +29,19 @@ public final class LoginPage extends BasePage {
     @Step("Get the error message")
     public Locator getErrorMessage() {
         return page.locator(".error-message-container h3");
+    }
+
+    @Step("Click on the 'Login' button")
+    public ProductsPage submitLogin() {
+        page.click("id=login-button");
+        return BasePageFactory.createInstance(ProductsPage.class, page);
+    }
+
+    @Step
+    public ProductsPage loginAs(String username, String password) {
+        return open()
+                .typeUsername(username)
+                .typePassword(password)
+                .submitLogin();
     }
 }
