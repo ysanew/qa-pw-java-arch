@@ -31,4 +31,21 @@ public final class CartPage extends BasePage {
         page.fill("//input[@data-test='postalCode']", shipInfo.getZip());
         return this;
     }
+
+    @Step("Click continue button")
+    public CartPage clickOnContinue(){
+        page.locator("//input[@data-test='continue']").click();
+        return this;
+    }
+
+    @Step("Get complete header")
+    public Locator getCompleteHeader() {
+        return page.locator("//h2[@data-test='complete-header']");
+    }
+
+    @Step("Click finish button")
+    public CartPage clickOnFinish(){
+        page.locator("//button[@data-test='finish']").click();
+        return this;
+    }
 }

@@ -16,7 +16,7 @@ public final class LoginPage extends BasePage {
 
     @Step("Type <username> into the 'Username' field")
     public LoginPage typeUsername(final String username) {
-        page.fill("id=username", username);
+        page.fill("id=user-name", username);
         return this;
     }
 

@@ -13,6 +13,6 @@ public final class HeaderComponent extends BaseComponent{
     }
 
     public void clickOnCart() {
-        page.click("#//a[@data-test='shopping-cart-link']");
+        page.click("a[data-test='shopping-cart-link']");
     }
 }

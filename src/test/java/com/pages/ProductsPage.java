@@ -6,50 +6,51 @@ import com.microsoft.playwright.Locator;
 import com.utils.BasePageFactory;
 import io.qameta.allure.Step;
 
-
 public final class ProductsPage extends BasePage {
 
-    private HeaderComponent headerComponent;
-    private SideNavMenuComponent sideNavMenuComponent;
+    private HeaderComponent header;
+    private SideNavMenuComponent sideNavMenu;
 
     @Override
     public void initComponents() {
-        headerComponent = new HeaderComponent(page);
-        sideNavMenuComponent = new SideNavMenuComponent(page);
+        header = new HeaderComponent(page);
+        sideNavMenu = new SideNavMenuComponent(page);
     }
 
-    @Step("Get the title of of the 'Products' page")
+    @Step("Get title of the 'Products' page")
     public Locator getTitle() {
         return page.locator(".title");
     }
 
-    @Step("Get names of all products")
-    public Locator getProductsNames() {
+    @Step("Get all products names")
+    public Locator getProductNames() {
         return page.locator("//div[@data-test='inventory-item-name']");
     }
 
     @Step("Set <sortName> into 'Sort Filter'")
-    public ProductsPage setSortFilter(String sortName) {
+    public ProductsPage setSortFilter(String sortName){
         page.locator("//select[@data-test='product-sort-container']").selectOption(sortName);
         return this;
     }
 
-    @Step("Add to cart the item with the name <itemName>")
-    public ProductsPage addItemToCart(String itemName) {
+    @Step("Add to cart item with name <itemName>")
+    public ProductsPage addItemToCart(String itemName){
         page.locator(String.format("//div[text()='%s']//following::button[1]", itemName)).click();
         return this;
     }
 
     @Step("Click on Cart button")
     public CartPage clickOnCart() {
-        headerComponent.clickOnCart();
+        header.clickOnCart();
         return BasePageFactory.createInstance(CartPage.class, page);
     }
 
-    @Step("Click on logout button on sidebar navigation menu")
+    @Step("Click on 'Logout' button from side navigation menu")
     public LoginPage clickOnLogout() {
-        headerComponent.clickOnHamburgerMenu();
-        sideNavMenuComponent.clickOnLogout();
+        header.clickOnHamburgerMenu();
+        sideNavMenu.clickOnLogout();
+
         return BasePageFactory.createInstance(LoginPage.class, page);
     }
+
 }
